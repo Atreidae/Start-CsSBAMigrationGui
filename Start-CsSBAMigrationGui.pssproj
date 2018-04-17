@@ -25,9 +25,49 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="Script.ps1" />
+    <Compile Include="Start-CsSBAMigrationGui.designer.ps1">
+      <SubType>Code</SubType>
+      <DependentUpon>Start-CsSBAMigrationGui.ps1</DependentUpon>
+    </Compile>
+    <Compile Include="Start-CsSBAMigrationGui.ps1">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <Name>System</Name>
+      <AssemblyName>
+      </AssemblyName>
+      <HintPath>
+      </HintPath>
+    </Reference>
+    <Reference Include="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <Name>System.Drawing</Name>
+      <AssemblyName>
+      </AssemblyName>
+      <HintPath>
+      </HintPath>
+    </Reference>
+    <Reference Include="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <Name>System.Drawing</Name>
+      <AssemblyName>
+      </AssemblyName>
+      <HintPath>
+      </HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <Name>System.Windows.Forms</Name>
+      <AssemblyName>
+      </AssemblyName>
+      <HintPath>
+      </HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Start-CsSBAMigrationGui.resx">
+      <DependentUpon>Start-CsSBAMigrationGui.ps1</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
