@@ -3,12 +3,7 @@
 $MainForm = New-Object -TypeName System.Windows.Forms.Form
 [System.Windows.Forms.TabControl]$Tab_Control = $null
 [System.Windows.Forms.TabPage]$tab_Setup = $null
-[System.Windows.Forms.Label]$label3 = $null
-[System.Windows.Forms.Label]$label2 = $null
-[System.Windows.Forms.Label]$label1 = $null
-[System.Windows.Forms.Label]$label13 = $null
 [System.Windows.Forms.TabPage]$tab_Migrate = $null
-[System.Windows.Forms.Label]$label4 = $null
 [System.Windows.Forms.TextBox]$Txt_ConfigFileName = $null
 [System.Windows.Forms.Label]$label25 = $null
 [System.Windows.Forms.Label]$label26 = $null
@@ -23,13 +18,8 @@ $MainForm = New-Object -TypeName System.Windows.Forms.Form
 [System.Windows.Forms.Button]$button2 = $null
 [System.Windows.Forms.Button]$button3 = $null
 [System.Windows.Forms.Button]$button4 = $null
-[System.Windows.Forms.DataGridViewComboBoxColumn]$src_VoicePolicy = $null
-[System.Windows.Forms.DataGridViewComboBoxColumn]$dst_VoicePolicy = $null
 [System.Windows.Forms.DataGridViewComboBoxColumn]$src_Dialplan = $null
 [System.Windows.Forms.DataGridViewComboBoxColumn]$dst_Dialplan = $null
-[System.Windows.Forms.ComboBox]$cbx_Frontend = $null
-[System.Windows.Forms.ComboBox]$cbx_DstSbaPool = $null
-[System.Windows.Forms.ComboBox]$cbx_SrcSbaPool = $null
 [System.Windows.Forms.DataGridView]$dataGridView1 = $null
 [System.Windows.Forms.DataGridViewComboBoxColumn]$dataGridViewComboBoxColumn1 = $null
 [System.Windows.Forms.DataGridViewComboBoxColumn]$dataGridViewComboBoxColumn2 = $null
@@ -37,6 +27,18 @@ $MainForm = New-Object -TypeName System.Windows.Forms.Form
 [System.Windows.Forms.Label]$label9 = $null
 [System.Windows.Forms.Label]$label8 = $null
 [System.Windows.Forms.Label]$label7 = $null
+[System.Windows.Forms.DataGridViewComboBoxColumn]$src_VoicePolicy = $null
+[System.Windows.Forms.DataGridViewComboBoxColumn]$dst_VoicePolicy = $null
+[System.Windows.Forms.ComboBox]$cbx_MigrationType = $null
+[System.Windows.Forms.Label]$label11 = $null
+[System.Windows.Forms.Label]$lbl_DialPlanMap = $null
+[System.Windows.Forms.Label]$lbl_VoicePolicyMap = $null
+[System.Windows.Forms.ComboBox]$cbx_DstPool = $null
+[System.Windows.Forms.Label]$lbl_DstPool = $null
+[System.Windows.Forms.ComboBox]$cbx_IntPool = $null
+[System.Windows.Forms.Label]$lbl_IntermPool = $null
+[System.Windows.Forms.Label]$lbl_SourcePool = $null
+[System.Windows.Forms.ComboBox]$cbx_SrcPool = $null
 [System.Windows.Forms.Button]$button1 = $null
 function InitializeComponent
 {
@@ -63,22 +65,24 @@ $dst_VoicePolicy = (New-Object -TypeName System.Windows.Forms.DataGridViewComboB
 $grid_DialPlan = (New-Object -TypeName System.Windows.Forms.DataGridView)
 $src_Dialplan = (New-Object -TypeName System.Windows.Forms.DataGridViewComboBoxColumn)
 $dst_Dialplan = (New-Object -TypeName System.Windows.Forms.DataGridViewComboBoxColumn)
-$label4 = (New-Object -TypeName System.Windows.Forms.Label)
-$label3 = (New-Object -TypeName System.Windows.Forms.Label)
-$cbx_DstSbaPool = (New-Object -TypeName System.Windows.Forms.ComboBox)
-$label2 = (New-Object -TypeName System.Windows.Forms.Label)
-$cbx_Frontend = (New-Object -TypeName System.Windows.Forms.ComboBox)
-$label1 = (New-Object -TypeName System.Windows.Forms.Label)
-$label13 = (New-Object -TypeName System.Windows.Forms.Label)
-$cbx_SrcSbaPool = (New-Object -TypeName System.Windows.Forms.ComboBox)
+$lbl_DialPlanMap = (New-Object -TypeName System.Windows.Forms.Label)
+$lbl_VoicePolicyMap = (New-Object -TypeName System.Windows.Forms.Label)
+$cbx_DstPool = (New-Object -TypeName System.Windows.Forms.ComboBox)
+$lbl_DstPool = (New-Object -TypeName System.Windows.Forms.Label)
+$cbx_IntPool = (New-Object -TypeName System.Windows.Forms.ComboBox)
+$lbl_IntermPool = (New-Object -TypeName System.Windows.Forms.Label)
+$lbl_SourcePool = (New-Object -TypeName System.Windows.Forms.Label)
+$cbx_SrcPool = (New-Object -TypeName System.Windows.Forms.ComboBox)
 $tab_Migrate = (New-Object -TypeName System.Windows.Forms.TabPage)
+$label10 = (New-Object -TypeName System.Windows.Forms.Label)
+$label9 = (New-Object -TypeName System.Windows.Forms.Label)
+$label8 = (New-Object -TypeName System.Windows.Forms.Label)
+$label7 = (New-Object -TypeName System.Windows.Forms.Label)
 $dataGridView1 = (New-Object -TypeName System.Windows.Forms.DataGridView)
 $dataGridViewComboBoxColumn1 = (New-Object -TypeName System.Windows.Forms.DataGridViewComboBoxColumn)
 $dataGridViewComboBoxColumn2 = (New-Object -TypeName System.Windows.Forms.DataGridViewComboBoxColumn)
-$label7 = (New-Object -TypeName System.Windows.Forms.Label)
-$label8 = (New-Object -TypeName System.Windows.Forms.Label)
-$label9 = (New-Object -TypeName System.Windows.Forms.Label)
-$label10 = (New-Object -TypeName System.Windows.Forms.Label)
+$label11 = (New-Object -TypeName System.Windows.Forms.Label)
+$cbx_MigrationType = (New-Object -TypeName System.Windows.Forms.ComboBox)
 $Tab_Control.SuspendLayout()
 $tab_Setup.SuspendLayout()
 ([System.ComponentModel.ISupportInitialize]$grid_VoicePolicy).BeginInit()
@@ -99,6 +103,8 @@ $Tab_Control.TabIndex = [System.Int32]0
 #
 #tab_Setup
 #
+$tab_Setup.Controls.Add($cbx_MigrationType)
+$tab_Setup.Controls.Add($label11)
 $tab_Setup.Controls.Add($textBox1)
 $tab_Setup.Controls.Add($label5)
 $tab_Setup.Controls.Add($label6)
@@ -113,20 +119,20 @@ $tab_Setup.Controls.Add($Btn_ConfigBrowse)
 $tab_Setup.Controls.Add($Btn_LoadConfig)
 $tab_Setup.Controls.Add($grid_VoicePolicy)
 $tab_Setup.Controls.Add($grid_DialPlan)
-$tab_Setup.Controls.Add($label4)
-$tab_Setup.Controls.Add($label3)
-$tab_Setup.Controls.Add($cbx_DstSbaPool)
-$tab_Setup.Controls.Add($label2)
-$tab_Setup.Controls.Add($cbx_Frontend)
-$tab_Setup.Controls.Add($label1)
-$tab_Setup.Controls.Add($label13)
-$tab_Setup.Controls.Add($cbx_SrcSbaPool)
+$tab_Setup.Controls.Add($lbl_DialPlanMap)
+$tab_Setup.Controls.Add($lbl_VoicePolicyMap)
+$tab_Setup.Controls.Add($cbx_DstPool)
+$tab_Setup.Controls.Add($lbl_DstPool)
+$tab_Setup.Controls.Add($cbx_IntPool)
+$tab_Setup.Controls.Add($lbl_IntermPool)
+$tab_Setup.Controls.Add($lbl_SourcePool)
+$tab_Setup.Controls.Add($cbx_SrcPool)
 $tab_Setup.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
 $tab_Setup.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]4,[System.Int32]22))
 $tab_Setup.Name = [System.String]'tab_Setup'
 $tab_Setup.Padding = (New-Object -TypeName System.Windows.Forms.Padding -ArgumentList @([System.Int32]3))
-$tab_Setup.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]743,[System.Int32]423))
+$tab_Setup.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]889,[System.Int32]526))
 $tab_Setup.TabIndex = [System.Int32]0
 $tab_Setup.Text = [System.String]'Setup'
 $tab_Setup.UseVisualStyleBackColor = $true
@@ -265,6 +271,7 @@ $Btn_LoadConfig.UseVisualStyleBackColor = $false
 #
 $grid_VoicePolicy.ColumnHeadersHeightSizeMode = [System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode]::AutoSize
 $grid_VoicePolicy.Columns.AddRange($src_VoicePolicy,$dst_VoicePolicy)
+$grid_VoicePolicy.Enabled = $false
 $grid_VoicePolicy.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]363,[System.Int32]291))
 $grid_VoicePolicy.Name = [System.String]'grid_VoicePolicy'
 $grid_VoicePolicy.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]357,[System.Int32]110))
@@ -275,6 +282,7 @@ $grid_VoicePolicy.add_CellContentClick($dataGridView2_CellContentClick)
 #
 $src_VoicePolicy.AutoSizeMode = [System.Windows.Forms.DataGridViewAutoSizeColumnMode]::AllCells
 $src_VoicePolicy.HeaderText = [System.String]'Source Voice Policy'
+$src_VoicePolicy.Items.AddRange([System.Object[]]@([System.String]'--Unassigned--'))
 $src_VoicePolicy.Name = [System.String]'src_VoicePolicy'
 $src_VoicePolicy.Width = [System.Int32]72
 #
@@ -282,6 +290,7 @@ $src_VoicePolicy.Width = [System.Int32]72
 #
 $dst_VoicePolicy.AutoSizeMode = [System.Windows.Forms.DataGridViewAutoSizeColumnMode]::AllCells
 $dst_VoicePolicy.HeaderText = [System.String]'Destination Dialplan'
+$dst_VoicePolicy.Items.AddRange([System.Object[]]@([System.String]'--Unassigned--'))
 $dst_VoicePolicy.Name = [System.String]'dst_VoicePolicy'
 $dst_VoicePolicy.Width = [System.Int32]96
 #
@@ -289,6 +298,7 @@ $dst_VoicePolicy.Width = [System.Int32]96
 #
 $grid_DialPlan.ColumnHeadersHeightSizeMode = [System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode]::AutoSize
 $grid_DialPlan.Columns.AddRange($src_Dialplan,$dst_Dialplan)
+$grid_DialPlan.Enabled = $false
 $grid_DialPlan.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]15,[System.Int32]291))
 $grid_DialPlan.Name = [System.String]'grid_DialPlan'
 $grid_DialPlan.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]342,[System.Int32]110))
@@ -311,89 +321,97 @@ $dst_Dialplan.Items.AddRange([System.Object[]]@([System.String]'--Unassigned--')
 $dst_Dialplan.Name = [System.String]'dst_Dialplan'
 $dst_Dialplan.Width = [System.Int32]96
 #
-#label4
+#lbl_DialPlanMap
 #
-$label4.AutoSize = $true
-$label4.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label4.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]12,[System.Int32]275))
-$label4.Name = [System.String]'label4'
-$label4.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]130,[System.Int32]13))
-$label4.TabIndex = [System.Int32]29
-$label4.Text = [System.String]'Dial Plan Re-Mapping'
+$lbl_DialPlanMap.AutoSize = $true
+$lbl_DialPlanMap.Enabled = $false
+$lbl_DialPlanMap.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$lbl_DialPlanMap.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]12,[System.Int32]275))
+$lbl_DialPlanMap.Name = [System.String]'lbl_DialPlanMap'
+$lbl_DialPlanMap.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]130,[System.Int32]13))
+$lbl_DialPlanMap.TabIndex = [System.Int32]29
+$lbl_DialPlanMap.Text = [System.String]'Dial Plan Re-Mapping'
 #
-#label3
+#lbl_VoicePolicyMap
 #
-$label3.AutoSize = $true
-$label3.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label3.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]360,[System.Int32]275))
-$label3.Name = [System.String]'label3'
-$label3.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]149,[System.Int32]13))
-$label3.TabIndex = [System.Int32]28
-$label3.Text = [System.String]'Voice Policy Re-Mapping'
-$label3.add_Click($label3_Click)
+$lbl_VoicePolicyMap.AutoSize = $true
+$lbl_VoicePolicyMap.Enabled = $false
+$lbl_VoicePolicyMap.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$lbl_VoicePolicyMap.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]360,[System.Int32]275))
+$lbl_VoicePolicyMap.Name = [System.String]'lbl_VoicePolicyMap'
+$lbl_VoicePolicyMap.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]149,[System.Int32]13))
+$lbl_VoicePolicyMap.TabIndex = [System.Int32]28
+$lbl_VoicePolicyMap.Text = [System.String]'Voice Policy Re-Mapping'
+$lbl_VoicePolicyMap.add_Click($label3_Click)
 #
-#cbx_DstSbaPool
+#cbx_DstPool
 #
-$cbx_DstSbaPool.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+$cbx_DstPool.Enabled = $false
+$cbx_DstPool.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
-$cbx_DstSbaPool.FormattingEnabled = $true
-$cbx_DstSbaPool.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]495,[System.Int32]227))
-$cbx_DstSbaPool.Name = [System.String]'cbx_DstSbaPool'
-$cbx_DstSbaPool.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]225,[System.Int32]21))
-$cbx_DstSbaPool.TabIndex = [System.Int32]27
-$cbx_DstSbaPool.Text = [System.String]'---None Selected---'
+$cbx_DstPool.FormattingEnabled = $true
+$cbx_DstPool.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]495,[System.Int32]227))
+$cbx_DstPool.Name = [System.String]'cbx_DstPool'
+$cbx_DstPool.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]225,[System.Int32]21))
+$cbx_DstPool.TabIndex = [System.Int32]27
+$cbx_DstPool.Text = [System.String]'---None Selected---'
 #
-#label2
+#lbl_DstPool
 #
-$label2.AutoSize = $true
-$label2.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label2.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]492,[System.Int32]211))
-$label2.Name = [System.String]'label2'
-$label2.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]99,[System.Int32]13))
-$label2.TabIndex = [System.Int32]26
-$label2.Text = [System.String]'Destination SBA'
+$lbl_DstPool.AutoSize = $true
+$lbl_DstPool.Enabled = $false
+$lbl_DstPool.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$lbl_DstPool.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]492,[System.Int32]211))
+$lbl_DstPool.Name = [System.String]'lbl_DstPool'
+$lbl_DstPool.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]100,[System.Int32]13))
+$lbl_DstPool.TabIndex = [System.Int32]26
+$lbl_DstPool.Text = [System.String]'Destination Pool'
 #
-#cbx_Frontend
+#cbx_IntPool
 #
-$cbx_Frontend.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+$cbx_IntPool.Enabled = $false
+$cbx_IntPool.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
-$cbx_Frontend.FormattingEnabled = $true
-$cbx_Frontend.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]255,[System.Int32]227))
-$cbx_Frontend.Name = [System.String]'cbx_Frontend'
-$cbx_Frontend.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]225,[System.Int32]21))
-$cbx_Frontend.TabIndex = [System.Int32]25
-$cbx_Frontend.Text = [System.String]'---None Selected---'
+$cbx_IntPool.FormattingEnabled = $true
+$cbx_IntPool.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]255,[System.Int32]227))
+$cbx_IntPool.Name = [System.String]'cbx_IntPool'
+$cbx_IntPool.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]225,[System.Int32]21))
+$cbx_IntPool.TabIndex = [System.Int32]25
+$cbx_IntPool.Text = [System.String]'---None Selected---'
 #
-#label1
+#lbl_IntermPool
 #
-$label1.AutoSize = $true
-$label1.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]252,[System.Int32]211))
-$label1.Name = [System.String]'label1'
-$label1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]151,[System.Int32]13))
-$label1.TabIndex = [System.Int32]24
-$label1.Text = [System.String]'Intermediate FrontEnd (?)'
+$lbl_IntermPool.AutoSize = $true
+$lbl_IntermPool.Enabled = $false
+$lbl_IntermPool.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$lbl_IntermPool.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]252,[System.Int32]211))
+$lbl_IntermPool.Name = [System.String]'lbl_IntermPool'
+$lbl_IntermPool.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]151,[System.Int32]13))
+$lbl_IntermPool.TabIndex = [System.Int32]24
+$lbl_IntermPool.Text = [System.String]'Intermediate FrontEnd (?)'
 #
-#label13
+#lbl_SourcePool
 #
-$label13.AutoSize = $true
-$label13.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label13.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]12,[System.Int32]210))
-$label13.Name = [System.String]'label13'
-$label13.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]75,[System.Int32]13))
-$label13.TabIndex = [System.Int32]23
-$label13.Text = [System.String]'Source SBA'
+$lbl_SourcePool.AutoSize = $true
+$lbl_SourcePool.Enabled = $false
+$lbl_SourcePool.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$lbl_SourcePool.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]12,[System.Int32]210))
+$lbl_SourcePool.Name = [System.String]'lbl_SourcePool'
+$lbl_SourcePool.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]76,[System.Int32]13))
+$lbl_SourcePool.TabIndex = [System.Int32]23
+$lbl_SourcePool.Text = [System.String]'Source Pool'
 #
-#cbx_SrcSbaPool
+#cbx_SrcPool
 #
-$cbx_SrcSbaPool.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+$cbx_SrcPool.Enabled = $false
+$cbx_SrcPool.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
-$cbx_SrcSbaPool.FormattingEnabled = $true
-$cbx_SrcSbaPool.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]15,[System.Int32]227))
-$cbx_SrcSbaPool.Name = [System.String]'cbx_SrcSbaPool'
-$cbx_SrcSbaPool.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]225,[System.Int32]21))
-$cbx_SrcSbaPool.TabIndex = [System.Int32]22
-$cbx_SrcSbaPool.Text = [System.String]'---None Selected---'
+$cbx_SrcPool.FormattingEnabled = $true
+$cbx_SrcPool.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]15,[System.Int32]227))
+$cbx_SrcPool.Name = [System.String]'cbx_SrcPool'
+$cbx_SrcPool.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]225,[System.Int32]21))
+$cbx_SrcPool.TabIndex = [System.Int32]22
+$cbx_SrcPool.Text = [System.String]'---None Selected---'
 #
 #tab_Migrate
 #
@@ -411,6 +429,46 @@ $tab_Migrate.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([S
 $tab_Migrate.TabIndex = [System.Int32]1
 $tab_Migrate.Text = [System.String]'Migrate'
 $tab_Migrate.UseVisualStyleBackColor = $true
+#
+#label10
+#
+$label10.AutoSize = $true
+$label10.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$label10.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]390))
+$label10.Name = [System.String]'label10'
+$label10.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]94,[System.Int32]13))
+$label10.TabIndex = [System.Int32]35
+$label10.Text = [System.String]'Meeting Rooms'
+#
+#label9
+#
+$label9.AutoSize = $true
+$label9.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$label9.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]267))
+$label9.Name = [System.String]'label9'
+$label9.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]130,[System.Int32]13))
+$label9.TabIndex = [System.Int32]34
+$label9.Text = [System.String]'Common Area Phones'
+#
+#label8
+#
+$label8.AutoSize = $true
+$label8.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$label8.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]165))
+$label8.Name = [System.String]'label8'
+$label8.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]96,[System.Int32]13))
+$label8.TabIndex = [System.Int32]33
+$label8.Text = [System.String]'Analog Devices'
+#
+#label7
+#
+$label7.AutoSize = $true
+$label7.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$label7.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]18))
+$label7.Name = [System.String]'label7'
+$label7.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]39,[System.Int32]13))
+$label7.TabIndex = [System.Int32]32
+$label7.Text = [System.String]'Users'
 #
 #dataGridView1
 #
@@ -462,45 +520,27 @@ $dataGridViewComboBoxColumn2.Items.AddRange([System.Object[]]@([System.String]'-
 $dataGridViewComboBoxColumn2.Name = [System.String]'dataGridViewComboBoxColumn2'
 $dataGridViewComboBoxColumn2.Width = [System.Int32]96
 #
-#label7
+#label11
 #
-$label7.AutoSize = $true
-$label7.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label7.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]18))
-$label7.Name = [System.String]'label7'
-$label7.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]39,[System.Int32]13))
-$label7.TabIndex = [System.Int32]32
-$label7.Text = [System.String]'Users'
+$label11.AutoSize = $true
+$label11.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]10,[System.Int32]155))
+$label11.Name = [System.String]'label11'
+$label11.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]77,[System.Int32]13))
+$label11.TabIndex = [System.Int32]63
+$label11.Text = [System.String]'Migration Type'
 #
-#label8
+#cbx_MigrationType
 #
-$label8.AutoSize = $true
-$label8.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label8.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]165))
-$label8.Name = [System.String]'label8'
-$label8.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]96,[System.Int32]13))
-$label8.TabIndex = [System.Int32]33
-$label8.Text = [System.String]'Analog Devices'
-#
-#label9
-#
-$label9.AutoSize = $true
-$label9.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label9.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]267))
-$label9.Name = [System.String]'label9'
-$label9.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]130,[System.Int32]13))
-$label9.TabIndex = [System.Int32]34
-$label9.Text = [System.String]'Common Area Phones'
-#
-#label10
-#
-$label10.AutoSize = $true
-$label10.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
-$label10.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]390))
-$label10.Name = [System.String]'label10'
-$label10.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]94,[System.Int32]13))
-$label10.TabIndex = [System.Int32]35
-$label10.Text = [System.String]'Meeting Rooms'
+$cbx_MigrationType.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+
+$cbx_MigrationType.FormattingEnabled = $true
+$cbx_MigrationType.Items.AddRange([System.Object[]]@([System.String]'SBA to SBA',[System.String]'SBA to FrontEnd',[System.String]'Frontend to SBA',[System.String]'FrontEnd to FrontEnd'))
+$cbx_MigrationType.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]114,[System.Int32]152))
+$cbx_MigrationType.Name = [System.String]'cbx_MigrationType'
+$cbx_MigrationType.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]225,[System.Int32]21))
+$cbx_MigrationType.TabIndex = [System.Int32]64
+$cbx_MigrationType.Text = [System.String]'---None Selected---'
+$cbx_MigrationType.add_SelectedIndexChanged($cbx_MigrationType_SelectedIndexChanged)
 #
 #MainForm
 #
@@ -520,12 +560,7 @@ $MainForm.ResumeLayout($false)
 Add-Member -InputObject $MainForm -Name base -Value $base -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name Tab_Control -Value $Tab_Control -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name tab_Setup -Value $tab_Setup -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name label3 -Value $label3 -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name label2 -Value $label2 -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name label1 -Value $label1 -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name label13 -Value $label13 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name tab_Migrate -Value $tab_Migrate -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name label4 -Value $label4 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name Txt_ConfigFileName -Value $Txt_ConfigFileName -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name label25 -Value $label25 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name label26 -Value $label26 -MemberType NoteProperty
@@ -540,13 +575,8 @@ Add-Member -InputObject $MainForm -Name label6 -Value $label6 -MemberType NotePr
 Add-Member -InputObject $MainForm -Name button2 -Value $button2 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name button3 -Value $button3 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name button4 -Value $button4 -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name src_VoicePolicy -Value $src_VoicePolicy -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name dst_VoicePolicy -Value $dst_VoicePolicy -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name src_Dialplan -Value $src_Dialplan -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name dst_Dialplan -Value $dst_Dialplan -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name cbx_Frontend -Value $cbx_Frontend -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name cbx_DstSbaPool -Value $cbx_DstSbaPool -MemberType NoteProperty
-Add-Member -InputObject $MainForm -Name cbx_SrcSbaPool -Value $cbx_SrcSbaPool -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name dataGridView1 -Value $dataGridView1 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name dataGridViewComboBoxColumn1 -Value $dataGridViewComboBoxColumn1 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name dataGridViewComboBoxColumn2 -Value $dataGridViewComboBoxColumn2 -MemberType NoteProperty
@@ -554,6 +584,18 @@ Add-Member -InputObject $MainForm -Name label10 -Value $label10 -MemberType Note
 Add-Member -InputObject $MainForm -Name label9 -Value $label9 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name label8 -Value $label8 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name label7 -Value $label7 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name src_VoicePolicy -Value $src_VoicePolicy -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name dst_VoicePolicy -Value $dst_VoicePolicy -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name cbx_MigrationType -Value $cbx_MigrationType -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label11 -Value $label11 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name lbl_DialPlanMap -Value $lbl_DialPlanMap -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name lbl_VoicePolicyMap -Value $lbl_VoicePolicyMap -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name cbx_DstPool -Value $cbx_DstPool -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name lbl_DstPool -Value $lbl_DstPool -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name cbx_IntPool -Value $cbx_IntPool -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name lbl_IntermPool -Value $lbl_IntermPool -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name lbl_SourcePool -Value $lbl_SourcePool -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name cbx_SrcPool -Value $cbx_SrcPool -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name button1 -Value $button1 -MemberType NoteProperty
 }
 . InitializeComponent

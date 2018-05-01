@@ -1,4 +1,6 @@
 ﻿
+
+
 <#  
 .SYNOPSIS  
 	Todo, build synopsis
@@ -304,6 +306,40 @@ $dataGridView2_CellContentClick = {
 $label3_Click = {
 
 }
+
+$checkBox1_CheckedChanged = {
+
+}
+
+
+$cbx_MigrationType_SelectedIndexChanged = {
+#User changed the migration type
+
+	#Check to see if "none selected" if so disable everything
+
+
+	#Otherwise enable most controls
+	$lbl_SourcePool.enabled = $true
+	$lbl_DstPool.enabled = $true
+
+	$cbx_SrcPool.enabled = $true
+	$cbx_DstPool.enabled = $true
+
+	$lbl_DialPlanMap.enabled = $true
+	$lbl_VoicePolicyMap.enabled = $true
+
+	$grid_DialPlan.enabled = $true
+	$grid_VoicePolicy.enabled = $true
+	
+	#are we an SBA to SBA migration? enable the rest
+	$lbl_IntermPool.enabled = $true
+	$cbx_IntPool.enabled = $true
+
+
+
+}
+
+
 #endregion controls
 
 
