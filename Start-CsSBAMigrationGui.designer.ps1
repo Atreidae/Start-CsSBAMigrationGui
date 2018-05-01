@@ -30,9 +30,19 @@ $MainForm = New-Object -TypeName System.Windows.Forms.Form
 [System.Windows.Forms.ComboBox]$cbx_Frontend = $null
 [System.Windows.Forms.ComboBox]$cbx_DstSbaPool = $null
 [System.Windows.Forms.ComboBox]$cbx_SrcSbaPool = $null
+[System.Windows.Forms.DataGridView]$dataGridView1 = $null
+[System.Windows.Forms.DataGridViewComboBoxColumn]$dataGridViewComboBoxColumn1 = $null
+[System.Windows.Forms.DataGridViewComboBoxColumn]$dataGridViewComboBoxColumn2 = $null
+[System.Windows.Forms.Label]$label10 = $null
+[System.Windows.Forms.Label]$label9 = $null
+[System.Windows.Forms.Label]$label8 = $null
+[System.Windows.Forms.Label]$label7 = $null
 [System.Windows.Forms.Button]$button1 = $null
 function InitializeComponent
 {
+[System.Windows.Forms.DataGridViewCellStyle]$dataGridViewCellStyle1 = (New-Object -TypeName System.Windows.Forms.DataGridViewCellStyle)
+[System.Windows.Forms.DataGridViewCellStyle]$dataGridViewCellStyle2 = (New-Object -TypeName System.Windows.Forms.DataGridViewCellStyle)
+[System.Windows.Forms.DataGridViewCellStyle]$dataGridViewCellStyle3 = (New-Object -TypeName System.Windows.Forms.DataGridViewCellStyle)
 $Tab_Control = (New-Object -TypeName System.Windows.Forms.TabControl)
 $tab_Setup = (New-Object -TypeName System.Windows.Forms.TabPage)
 $textBox1 = (New-Object -TypeName System.Windows.Forms.TextBox)
@@ -62,10 +72,19 @@ $label1 = (New-Object -TypeName System.Windows.Forms.Label)
 $label13 = (New-Object -TypeName System.Windows.Forms.Label)
 $cbx_SrcSbaPool = (New-Object -TypeName System.Windows.Forms.ComboBox)
 $tab_Migrate = (New-Object -TypeName System.Windows.Forms.TabPage)
+$dataGridView1 = (New-Object -TypeName System.Windows.Forms.DataGridView)
+$dataGridViewComboBoxColumn1 = (New-Object -TypeName System.Windows.Forms.DataGridViewComboBoxColumn)
+$dataGridViewComboBoxColumn2 = (New-Object -TypeName System.Windows.Forms.DataGridViewComboBoxColumn)
+$label7 = (New-Object -TypeName System.Windows.Forms.Label)
+$label8 = (New-Object -TypeName System.Windows.Forms.Label)
+$label9 = (New-Object -TypeName System.Windows.Forms.Label)
+$label10 = (New-Object -TypeName System.Windows.Forms.Label)
 $Tab_Control.SuspendLayout()
 $tab_Setup.SuspendLayout()
 ([System.ComponentModel.ISupportInitialize]$grid_VoicePolicy).BeginInit()
 ([System.ComponentModel.ISupportInitialize]$grid_DialPlan).BeginInit()
+$tab_Migrate.SuspendLayout()
+([System.ComponentModel.ISupportInitialize]$dataGridView1).BeginInit()
 $MainForm.SuspendLayout()
 #
 #Tab_Control
@@ -75,7 +94,7 @@ $Tab_Control.Controls.Add($tab_Migrate)
 $Tab_Control.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]12,[System.Int32]12))
 $Tab_Control.Name = [System.String]'Tab_Control'
 $Tab_Control.SelectedIndex = [System.Int32]0
-$Tab_Control.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]751,[System.Int32]449))
+$Tab_Control.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]897,[System.Int32]552))
 $Tab_Control.TabIndex = [System.Int32]0
 #
 #tab_Setup
@@ -378,20 +397,115 @@ $cbx_SrcSbaPool.Text = [System.String]'---None Selected---'
 #
 #tab_Migrate
 #
+$tab_Migrate.Controls.Add($label10)
+$tab_Migrate.Controls.Add($label9)
+$tab_Migrate.Controls.Add($label8)
+$tab_Migrate.Controls.Add($label7)
+$tab_Migrate.Controls.Add($dataGridView1)
 $tab_Migrate.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
 
 $tab_Migrate.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]4,[System.Int32]22))
 $tab_Migrate.Name = [System.String]'tab_Migrate'
 $tab_Migrate.Padding = (New-Object -TypeName System.Windows.Forms.Padding -ArgumentList @([System.Int32]3))
-$tab_Migrate.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]743,[System.Int32]423))
+$tab_Migrate.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]889,[System.Int32]526))
 $tab_Migrate.TabIndex = [System.Int32]1
 $tab_Migrate.Text = [System.String]'Migrate'
 $tab_Migrate.UseVisualStyleBackColor = $true
 #
+#dataGridView1
+#
+$dataGridViewCellStyle1.Alignment = [System.Windows.Forms.DataGridViewContentAlignment]::MiddleLeft
+$dataGridViewCellStyle1.BackColor = [System.Drawing.SystemColors]::Control
+$dataGridViewCellStyle1.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$dataGridViewCellStyle1.ForeColor = [System.Drawing.SystemColors]::WindowText
+$dataGridViewCellStyle1.SelectionBackColor = [System.Drawing.SystemColors]::Highlight
+$dataGridViewCellStyle1.SelectionForeColor = [System.Drawing.SystemColors]::HighlightText
+$dataGridViewCellStyle1.WrapMode = [System.Windows.Forms.DataGridViewTriState]::True
+$dataGridView1.ColumnHeadersDefaultCellStyle = $dataGridViewCellStyle1
+$dataGridView1.ColumnHeadersHeightSizeMode = [System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode]::AutoSize
+$dataGridView1.Columns.AddRange($dataGridViewComboBoxColumn1,$dataGridViewComboBoxColumn2)
+$dataGridViewCellStyle2.Alignment = [System.Windows.Forms.DataGridViewContentAlignment]::MiddleLeft
+$dataGridViewCellStyle2.BackColor = [System.Drawing.SystemColors]::Window
+$dataGridViewCellStyle2.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$dataGridViewCellStyle2.ForeColor = [System.Drawing.Color]::FromArgb(([System.Int32]([System.Byte][System.Byte]8)),([System.Int32]([System.Byte][System.Byte]116)),([System.Int32]([System.Byte][System.Byte]170)))
+
+$dataGridViewCellStyle2.SelectionBackColor = [System.Drawing.SystemColors]::Highlight
+$dataGridViewCellStyle2.SelectionForeColor = [System.Drawing.SystemColors]::HighlightText
+$dataGridViewCellStyle2.WrapMode = [System.Windows.Forms.DataGridViewTriState]::False
+$dataGridView1.DefaultCellStyle = $dataGridViewCellStyle2
+$dataGridView1.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]19,[System.Int32]34))
+$dataGridView1.Name = [System.String]'dataGridView1'
+$dataGridViewCellStyle3.Alignment = [System.Windows.Forms.DataGridViewContentAlignment]::MiddleLeft
+$dataGridViewCellStyle3.BackColor = [System.Drawing.SystemColors]::Control
+$dataGridViewCellStyle3.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$dataGridViewCellStyle3.ForeColor = [System.Drawing.SystemColors]::WindowText
+$dataGridViewCellStyle3.SelectionBackColor = [System.Drawing.SystemColors]::Highlight
+$dataGridViewCellStyle3.SelectionForeColor = [System.Drawing.SystemColors]::HighlightText
+$dataGridViewCellStyle3.WrapMode = [System.Windows.Forms.DataGridViewTriState]::True
+$dataGridView1.RowHeadersDefaultCellStyle = $dataGridViewCellStyle3
+$dataGridView1.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]707,[System.Int32]116))
+$dataGridView1.TabIndex = [System.Int32]31
+#
+#dataGridViewComboBoxColumn1
+#
+$dataGridViewComboBoxColumn1.AutoSizeMode = [System.Windows.Forms.DataGridViewAutoSizeColumnMode]::AllCells
+$dataGridViewComboBoxColumn1.HeaderText = [System.String]'Source Dial Plan'
+$dataGridViewComboBoxColumn1.Items.AddRange([System.Object[]]@([System.String]'--Unassigned--'))
+$dataGridViewComboBoxColumn1.Name = [System.String]'dataGridViewComboBoxColumn1'
+$dataGridViewComboBoxColumn1.Width = [System.Int32]64
+#
+#dataGridViewComboBoxColumn2
+#
+$dataGridViewComboBoxColumn2.AutoSizeMode = [System.Windows.Forms.DataGridViewAutoSizeColumnMode]::AllCells
+$dataGridViewComboBoxColumn2.HeaderText = [System.String]'Destination Dialplan'
+$dataGridViewComboBoxColumn2.Items.AddRange([System.Object[]]@([System.String]'--Unassigned--'))
+$dataGridViewComboBoxColumn2.Name = [System.String]'dataGridViewComboBoxColumn2'
+$dataGridViewComboBoxColumn2.Width = [System.Int32]96
+#
+#label7
+#
+$label7.AutoSize = $true
+$label7.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$label7.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]18))
+$label7.Name = [System.String]'label7'
+$label7.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]39,[System.Int32]13))
+$label7.TabIndex = [System.Int32]32
+$label7.Text = [System.String]'Users'
+#
+#label8
+#
+$label8.AutoSize = $true
+$label8.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$label8.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]165))
+$label8.Name = [System.String]'label8'
+$label8.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]96,[System.Int32]13))
+$label8.TabIndex = [System.Int32]33
+$label8.Text = [System.String]'Analog Devices'
+#
+#label9
+#
+$label9.AutoSize = $true
+$label9.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$label9.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]267))
+$label9.Name = [System.String]'label9'
+$label9.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]130,[System.Int32]13))
+$label9.TabIndex = [System.Int32]34
+$label9.Text = [System.String]'Common Area Phones'
+#
+#label10
+#
+$label10.AutoSize = $true
+$label10.Font = (New-Object -TypeName System.Drawing.Font -ArgumentList @([System.String]'Microsoft Sans Serif',[System.Single]8.25,[System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point,([System.Byte][System.Byte]0)))
+$label10.Location = (New-Object -TypeName System.Drawing.Point -ArgumentList @([System.Int32]16,[System.Int32]390))
+$label10.Name = [System.String]'label10'
+$label10.Size = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]94,[System.Int32]13))
+$label10.TabIndex = [System.Int32]35
+$label10.Text = [System.String]'Meeting Rooms'
+#
 #MainForm
 #
 $MainForm.BackColor = [System.Drawing.Color]::White
-$MainForm.ClientSize = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]765,[System.Int32]473))
+$MainForm.ClientSize = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]913,[System.Int32]569))
 $MainForm.Controls.Add($Tab_Control)
 $MainForm.Name = [System.String]'MainForm'
 $Tab_Control.ResumeLayout($false)
@@ -399,6 +513,9 @@ $tab_Setup.ResumeLayout($false)
 $tab_Setup.PerformLayout()
 ([System.ComponentModel.ISupportInitialize]$grid_VoicePolicy).EndInit()
 ([System.ComponentModel.ISupportInitialize]$grid_DialPlan).EndInit()
+$tab_Migrate.ResumeLayout($false)
+$tab_Migrate.PerformLayout()
+([System.ComponentModel.ISupportInitialize]$dataGridView1).EndInit()
 $MainForm.ResumeLayout($false)
 Add-Member -InputObject $MainForm -Name base -Value $base -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name Tab_Control -Value $Tab_Control -MemberType NoteProperty
@@ -430,6 +547,13 @@ Add-Member -InputObject $MainForm -Name dst_Dialplan -Value $dst_Dialplan -Membe
 Add-Member -InputObject $MainForm -Name cbx_Frontend -Value $cbx_Frontend -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name cbx_DstSbaPool -Value $cbx_DstSbaPool -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name cbx_SrcSbaPool -Value $cbx_SrcSbaPool -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name dataGridView1 -Value $dataGridView1 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name dataGridViewComboBoxColumn1 -Value $dataGridViewComboBoxColumn1 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name dataGridViewComboBoxColumn2 -Value $dataGridViewComboBoxColumn2 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label10 -Value $label10 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label9 -Value $label9 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label8 -Value $label8 -MemberType NoteProperty
+Add-Member -InputObject $MainForm -Name label7 -Value $label7 -MemberType NoteProperty
 Add-Member -InputObject $MainForm -Name button1 -Value $button1 -MemberType NoteProperty
 }
 . InitializeComponent

@@ -142,10 +142,10 @@ Function Get-CSInfrastructure(){
 	
 	
 	#Add the policies / Dialplans to the datagrid
-	Write-Log -component "Get-CSInfrastructure" -Message "Updating datagrids" -severity 1
+	Write-Log -component "Get-CSInfrastructure" -Message "Updating data grids" -severity 1
 	Foreach ($Dialplan in $DialPlans) {
-		$src_Dialplan.Items.Add($dialplan)
-		$dst_Dialplan.Items.Add($dialplan)
+		$src_Dialplan.Items.Add($dialplan.identity.replace("Tag:",""))
+		$dst_Dialplan.Items.Add($dialplan.identity.replace("Tag:",""))
 		}
 
 	Foreach ($VoicePolicy in $VoicePolicies) {
@@ -153,7 +153,7 @@ Function Get-CSInfrastructure(){
 		$dst_VoicePolicy.Items.Add($VoicePolicy)
 		}
 
-	#Make the datagrids look pretty
+	#Make the datagrids look pre
 	$grid_DialPlan.AutoResizeColumns()
 
 
